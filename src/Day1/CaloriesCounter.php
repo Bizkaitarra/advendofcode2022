@@ -6,7 +6,19 @@ class CaloriesCounter
 {
     public function __invoke(string $calories)
     {
-        return 0;
+        $elfs = explode("\n\n", $calories);
+        $maxElfCalories = null;
+        foreach($elfs as $elf) {
+            $elfCalories = 0;
+            foreach (explode("\n", $elf) as $elfItemCalories) {
+                $elfCalories+= $elfItemCalories;
+            }
+            if ($maxElfCalories === null || $maxElfCalories < $elfCalories) {
+                $maxElfCalories = $elfCalories;
+            }
+
+        }
+        return $maxElfCalories;
     }
 
 }
